@@ -1,0 +1,95 @@
+.cont {
+    background-color: rgba(0, 0, 0, 0.937);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator-body {
+
+}
+
+.gender {
+    display: flex;
+    justify-content: flex-start;
+    width: 40vw;
+
+}
+
+.gender div {
+    height:45px;
+    margin-right: 20px;
+    width: 80px;
+    border: 1px solid rgb(81, 80, 80);
+    text-align: center;
+    color: white;
+    padding: auto;
+    padding-top: 26px;
+    margin-bottom: 4vh;
+    cursor: pointer;
+}
+
+.unit-type{
+    display: inline-block;
+    border: 1px solid rgb(81, 80, 80);
+    margin: 5px;
+    color: white;
+    padding: 5px;
+    font-size: .8rem;
+    cursor: pointer;
+}
+
+.type-select {
+    display: inline-block;
+    margin: 3px;
+    font-size: .8rem;
+    color: white;
+}
+
+.input-measure {
+
+}
+
+.inp {
+    width: 3vw;
+    border:none;
+    margin: 4px;
+    background-color: rgba(15, 15, 15, 0.937);
+    border-color: aqua;
+    color: cyan;
+    border-bottom: 1px solid cyan;
+    margin-bottom: 14px;
+    font-size: 1.5rem;
+    padding: 5px;
+    outline: none;
+    text-align: center;
+}
+
+.row-one {
+    width: 40vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.range {
+    width: 40vw;
+    background-color: aqua;
+    accent-color: rgb(22, 141, 141);
+}
+
+.cal-but {
+    font-size: 1.4rem;
+    margin-top: 4vh;
+    background-color: cyan;
+    color: rgb(32, 28, 28);
+    border: none;
+    height: 5.6vh;
+    border-radius: 5px;
+}
+.selected {
+    background-color: cyan;
+    color: rgb(25, 24, 0) !important;
+}
