@@ -7,8 +7,14 @@
     align-items: center;
 }
 
-.calculator-body {
-
+.res {
+    margin-top: 5vh;
+    font-size: 2rem;
+    color: red;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+    background-color: rgb(0, 0, 0);
+    padding: 40px;
 }
 
 .gender {
@@ -16,6 +22,10 @@
     justify-content: flex-start;
     width: 40vw;
 
+}
+
+.gender div:hover {
+    border: 2px solid green;
 }
 
 .gender div {
@@ -48,12 +58,11 @@
     color: white;
 }
 
-.input-measure {
 
-}
 
 .inp {
-    width: 3vw;
+    width: 7vw;
+    min-width: 60px;
     border:none;
     margin: 4px;
     background-color: rgba(15, 15, 15, 0.937);
@@ -77,7 +86,7 @@
 .range {
     width: 40vw;
     background-color: aqua;
-    accent-color: rgb(22, 141, 141);
+    accent-color: rgb(3, 149, 207);
 }
 
 .cal-but {
@@ -86,9 +95,18 @@
     background-color: cyan;
     color: rgb(32, 28, 28);
     border: none;
+    padding: 10px;
+    cursor: pointer;
     height: 5.6vh;
     border-radius: 5px;
 }
+
+.cal-but:hover {
+    background-color: black;
+    color: white;
+    border: 1px solid cyan;
+}
+
 .selected {
     background-color: cyan;
     color: rgb(25, 24, 0) !important;

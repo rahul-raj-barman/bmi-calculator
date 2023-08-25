@@ -5,17 +5,27 @@ const Calculator = () => {
 
     const [gender, setGender] = useState("Male")
 
-    const [height, setHeight] = useState("CM")
+    const [height, setHeight] = useState("Meter")
 
-    const [weight, setWeight] = useState("kg")
+    const [weight, setWeight] = useState("Kg")
 
-    const [heightVal, setHeightVal] = useState()
+    var [heightVal, setHeightVal] = useState(0)
 
-    const [weightVal, setWeightVal] = useState()
+    var [weightVal, setWeightVal] = useState(0)
+    
+    const [type, setType] = useState("");
+
+    const [bmi, setBmi] = useState(0);
 
     const curr_gender = useRef(null);
     const curr_height = useRef(null);
     const curr_weight = useRef(null);
+    const height_slider = useRef(null);
+    const weight_slider = useRef(null);
+
+    useEffect(() => {
+        
+    }, [bmi])
 
     useEffect(() => {
         const arr = curr_gender.current.childNodes;
@@ -43,6 +53,17 @@ const Calculator = () => {
                 e.classList.remove("selected")
             }
         })
+        if(height === "Meter") {
+            console.log(height_slider.current.step)
+            height_slider.current.min = .1;
+            height_slider.current.max = 100;
+        }
+        else {
+            console.log("yes")
+            console.log(height_slider.current.end)
+            height_slider.current.min = .1;
+            height_slider.current.max = 10;
+        }
     }, [height])
 
     useEffect(() => {
@@ -54,6 +75,15 @@ const Calculator = () => {
                 e.classList.remove("selected")
             }
         })
+
+        if(weight === "Kg") {
+            weight_slider.current.min = 0;
+            weight_slider.current.max = 200;
+        }
+        else {
+            weight_slider.current.min = 0;
+            weight_slider.current.max = 200;
+        }
     }, [weight])
 
     const handleWeight = (e) => {
@@ -72,12 +102,52 @@ const Calculator = () => {
     }
 
     const handleHeight = (e) => {
-        console.log(e.target.value)
         setHeightVal(parseFloat(e.target.value))
     }
 
     const handleWeightVal = (e) => {
         setWeightVal(e.target.value)
+    }
+
+    const handleCalculation = () => {
+
+        let weightVal1 = weightVal;
+        let heightVal1 = heightVal;
+
+        if(height === "Feet") {
+            heightVal1 = parseFloat(heightVal1) * 0.3048;
+            heightVal1.toPrecision(1);
+        }
+        if(weight==="pound") {
+            weightVal1 = weightVal1*0.45359237;
+            weightVal1.toPrecision(1);
+        }
+
+        heightVal1 = parseFloat(heightVal1);
+        weightVal1 = parseFloat(weightVal1)
+        let bmi = (weightVal1/ (heightVal1*heightVal1)).toPrecision(1);
+
+        console.log(bmi)
+
+        setBmi(bmi/2)
+
+        const val = parseFloat(bmi/2);
+
+        console.log("val " + val)
+
+        if(val < 18.5) {
+            setType("UnderWeight")
+        }
+        else if(val >= 18.5 && val <= 24.9) {
+            setType("Normal Weight")
+        }
+        else if(val >= 25 && val <= 29.9) {
+            setType("Overweight");
+        }
+        else {
+            setType("Obesity");
+        }
+        
     }
 
     return (
@@ -98,20 +168,21 @@ const Calculator = () => {
 
                     <div ref={curr_height}>
                     <div className='type-select' >Height</div>
-                    <div className='unit-type' onClick={(e)=>handleHeightUnit(e)}>CM</div>
+                    <div className='unit-type' onClick={(e)=>handleHeightUnit(e)}>Meter</div>
                     <div className='unit-type' onClick={(e)=>handleHeightUnit(e)}>Feet</div> 
                     </div>
                    
                     
                     <div>
-                    <input type="text" className='inp inp-1' value={heightVal}/>
+                    <input type="text" className='inp inp-1' value={heightVal}
+                    onChange={(e) => handleHeight(e)}/>
                     </div>
                     
                     </div>
 
                     <div className="row-2">
                     <input type="range"
-                    step={.2} className='range' onChange={(e) => handleHeight(e)}/>
+                    step={.2} className='range' onChange={(e) => handleHeight(e)} ref={height_slider}/>
                     </div>
                     
                 
@@ -130,7 +201,7 @@ const Calculator = () => {
                    
                     
                     <div>
-                    <input type="text" className='inp inp-1' value={weightVal}/>
+                    <input type="text" className='inp inp-1' value={weightVal} onChange={(e) =>handleWeightVal(e)}/>
     
 
                     </div>
@@ -138,13 +209,16 @@ const Calculator = () => {
                     </div>
 
                     <div className="row-2">
-                    <input type="range" className='range' onChange={(e) =>handleWeightVal(e)}/>
+                    <input type="range" className='range' step={.1} onChange={(e) =>handleWeightVal(e)} ref={weight_slider}/>
                     </div>
                     
-                    <button className='cal-but'>Calculate BMI</button>
+                    <button className='cal-but' onClick={handleCalculation}>Calculate BMI</button>
                 
                 </div>
 
+                <div className="res">
+                {bmi} {  type}
+                </div>
 
 
             </div>
