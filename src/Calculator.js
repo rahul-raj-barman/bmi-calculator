@@ -9,9 +9,9 @@ const Calculator = () => {
 
     const [weight, setWeight] = useState("Kg")
 
-    var [heightVal, setHeightVal] = useState(0)
+    var [heightVal, setHeightVal] = useState(null)
 
-    var [weightVal, setWeightVal] = useState(0)
+    var [weightVal, setWeightVal] = useState(null)
     
     const [type, setType] = useState("");
 
@@ -110,6 +110,9 @@ const Calculator = () => {
     }
 
     const handleCalculation = () => {
+
+        console.log(heightVal);
+        console.log(weight)
 
         let weightVal1 = weightVal;
         let heightVal1 = heightVal;
@@ -217,7 +220,7 @@ const Calculator = () => {
                 </div>
 
                 <div className="res">
-                {bmi} {  type}
+                {bmi ? bmi:0} {  type}
                 </div>
 
 
